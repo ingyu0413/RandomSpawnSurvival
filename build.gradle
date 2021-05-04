@@ -1,0 +1,33 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'java'
+}
+
+group = properties["pluginName"]
+version = properties["pluginVersion"]
+
+repositories {
+    mavenCentral()
+    maven { url "https://papermc.io/repo/repository/maven-public/" }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    compileOnly "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+processResources {
+    filesMatching("**/*.yml") {
+        expand(project.properties)
+    }
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+}

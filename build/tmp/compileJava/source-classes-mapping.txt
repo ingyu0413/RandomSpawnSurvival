@@ -1,0 +1,3 @@
+com/github/ingyu0413/randomspawnsurvival/RandomSpawnSurvival.java
+ com.github.ingyu0413.randomspawnsurvival.RandomSpawnSurvival
+ com.github.ingyu0413.randomspawnsurvival.Restarter
