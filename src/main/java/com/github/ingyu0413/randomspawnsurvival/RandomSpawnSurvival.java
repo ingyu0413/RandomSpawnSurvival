@@ -5,6 +5,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.server.TabCompleteEvent;
@@ -12,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
 
-public final class RandomSpawnSurvival extends JavaPlugin {
+public final class RandomSpawnSurvival extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         List<World> worldlist = Bukkit.getWorlds();
@@ -24,6 +25,7 @@ public final class RandomSpawnSurvival extends JavaPlugin {
             world.setSpawnLocation(world.getHighestBlockAt(0, 0).getLocation());
         }
         Bukkit.getScheduler().runTaskTimer(this, new Restarter(), 0L, 20L * 60L);
+        Bukkit.getPluginManager().registerEvents(this, this);
     }
 
     public Location getSpawnLocation(String name) {
