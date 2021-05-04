@@ -33,7 +33,7 @@ public final class RandomSpawnSurvival extends JavaPlugin implements Listener {
         Random random = new Random(((long) seed) ^ 0x20050413);
         World world = Bukkit.getWorlds().get(0);
         WorldBorder worldborder = world.getWorldBorder();
-        double bordersize = worldborder.getSize();
+        double bordersize = worldborder.getSize() * 0.7;
         double x = random.nextDouble() * bordersize - bordersize / 2.0;
         double z = random.nextDouble() * bordersize - bordersize / 2.0;
         Block spawnblock = world.getHighestBlockAt((int)Math.floor(x), (int)Math.floor(z));
@@ -49,7 +49,7 @@ public final class RandomSpawnSurvival extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        e.joinMessage(null);
+        e.setJoinMessage(null);
         Player player = e.getPlayer();
         if (!player.hasPlayedBefore()) {
             player.teleport(getSpawnLocation(player.getName()));
@@ -59,12 +59,12 @@ public final class RandomSpawnSurvival extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
-        e.quitMessage(null);
+        e.setQuitMessage(null);
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e) {
-        e.deathMessage(null);
+        e.setDeathMessage(null);
     }
 
     @EventHandler(ignoreCancelled = true)
