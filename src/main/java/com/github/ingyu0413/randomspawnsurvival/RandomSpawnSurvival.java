@@ -96,7 +96,7 @@ public final class RandomSpawnSurvival extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPaperServerListPing(PaperServerListPingEvent e) {
-        e.setNumPlaye rs(1);
+        e.setNumPlayers(1);
         long gametime = Bukkit.getServer().getWorld("world").getTime() + 6000;
         String time = String.format("%02d:%02d:%02d", gametime / 1000, (int) (gametime % 1000 / 1000.0 * 60), (int) (gametime % 1000 / 1000.0 * 3));
         e.setMotd(ChatColor.BLUE + "" + ChatColor.BOLD + "RandomSpawnSurvival" + ChatColor.RESET + " " + ChatColor.DARK_GRAY + time);
