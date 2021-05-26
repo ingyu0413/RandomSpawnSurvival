@@ -48,6 +48,17 @@ public final class RandomSpawnSurvival extends JavaPlugin implements Listener {
     }
 
     @EventHandler
+    public void onAsyncPlayerPreLogin(AsyncPlayerPreLoginEvent e) {
+        switch (e.getPlayerProfile().getId().toString()) {
+            case "8bd662c7-53f2-4122-ae0c-5c43f8d362e8": //boringhoneycake
+            case "64ff1c62-80a4-48ee-bb7e-14b1967eda9d": //gligu
+            case "6a6db264-f33f-4d66-9165-8889cb756901": //KRnoobie
+            case "ed8b9276-7c93-4149-b381-f6b81afa7583": //ningenbbane
+                e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "io.netty.channel.AbstractChannel$AnnotatedConnectException: Connect refused: no further information:");
+        }
+    }
+
+    @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         e.setJoinMessage(null);
         Player player = e.getPlayer();
@@ -85,8 +96,10 @@ public final class RandomSpawnSurvival extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPaperServerListPing(PaperServerListPingEvent e) {
-        e.setNumPlayers(1);
-        e.setMotd(ChatColor.BLUE + "" + ChatColor.BOLD + "Random Spawn Survival Server");
+        e.setNumPlaye rs(1);
+        long gametime = Bukkit.getServer().getWorld("world").getTime() + 6000;
+        String time = String.format("%02d:%02d:%02d", gametime / 1000, (int) (gametime % 1000 / 1000.0 * 60), (int) (gametime % 1000 / 1000.0 * 3));
+        e.setMotd(ChatColor.BLUE + "" + ChatColor.BOLD + "RandomSpawnSurvival" + ChatColor.RESET + " " + ChatColor.DARK_GRAY + time);
         e.getPlayerSample().clear();
     }
 }

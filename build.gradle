@@ -31,3 +31,13 @@ processResources {
 compileJava {
     options.encoding = "UTF-8"
 }
+
+processResources {
+    filesMatching("**/*.yml") {
+        expand(project.properties)
+    }
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+}
